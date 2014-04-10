@@ -1,0 +1,145 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".NewReservationActivity" >
+
+    <TextView
+        android:id="@+id/txtLblCustomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Customer"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:id="@+id/layName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLblCustomer"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnFindCustomer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="findCustomer"
+            android:text="Find" />
+
+        <TextView
+            android:id="@+id/txtLblNameCustomer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtLblDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layName"
+        android:layout_marginTop="20dp"
+        android:text="Date"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:id="@+id/layDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLblDate"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnChooseReservationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="openPicker"
+            android:text="Change" />
+
+        <TextView
+            android:id="@+id/txtLblReservationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtLblTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layDate"
+        android:layout_marginTop="20dp"
+        android:text="Time"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:id="@+id/layTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLblTime"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnChooseReservationTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="openPicker"
+            android:text="Change" />
+
+        <TextView
+            android:id="@+id/txtLblReservationTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layQntPeople"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layTime"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txtQntPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How many people:"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spQntPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layReservationButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnConfirmReservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:onClick="confirmReservation"
+            android:text="Confirm" />
+
+        <Button
+            android:id="@+id/btnCancelReservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:onClick="cancelReservation"
+            android:text="Cancel" />
+    </LinearLayout>
+
+</RelativeLayout>
