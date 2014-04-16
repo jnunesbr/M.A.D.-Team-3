@@ -25,4 +25,8 @@ public class PickUpDAO {
 	public Pickup getPickUp(int id) {
 		return db.getPickup(id);
 	}
+	
+	public void deletePickup(int id){
+		db.deletePickup(id);
+	}
 }

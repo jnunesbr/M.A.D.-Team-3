@@ -24,4 +24,8 @@ public class ReservationDAO {
 	public Reservation getReservation(int id) {
 		return db.getReservation(id);
 	}
+	
+	public void deleteReservation(int id){
+		db.deleteReservation(id);
+	}
 }

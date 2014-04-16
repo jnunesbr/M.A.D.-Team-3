@@ -151,6 +151,12 @@ public class Database extends SQLiteOpenHelper {
 		return contact;
 	}
 
+	public void deleteCustomer(int id){
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.delete(TABLE_CUSTOMERS, KEY_CUSTOMER_ID+"="+id, null);
+		db.close();
+	}
+	
 	public ArrayList<Customer> getAllCustomers() {
 		SQLiteDatabase db = this.getReadableDatabase();
 
@@ -199,6 +205,12 @@ public class Database extends SQLiteOpenHelper {
 		db.close();
 		return reservation;
 	}
+	
+	public void deleteReservation(int id){
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.delete(TABLE_RESERVATIONS, KEY_RESERVATION_ID+"="+id, null);
+		db.close();
+	}
 
 	public ArrayList<Reservation> getAllReservations() {
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -245,7 +257,13 @@ public class Database extends SQLiteOpenHelper {
 		db.close();
 		return menuItem;
 	}
-
+	
+	public void deleteMenuItem(int id){
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.delete(TABLE_MENU_ITEMS, KEY_ITEM_ID+"="+id, null);
+		db.close();
+	}
+	
 	public ArrayList<MenuItem> getAllMenuItems() {
 		SQLiteDatabase db = this.getReadableDatabase();
 
@@ -296,6 +314,12 @@ public class Database extends SQLiteOpenHelper {
 		pickup.setItems(getAllPickupItems(id));
 		db.close();
 		return pickup;
+	}
+	
+	public void deletePickup(int id){
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.delete(TABLE_PICKUPS, KEY_PICKUP_ID+"="+id, null);
+		db.close();
 	}
 
 	public HashMap<MenuItem, Integer> getAllPickupItems(int pickupId) {

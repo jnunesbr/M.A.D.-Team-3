@@ -24,4 +24,8 @@ public class MenuItemDAO {
 	public MenuItem getMenuItem(int id) {
 		return db.getMenuItem(id);
 	}
+	
+	public void deletMenuItem(int id){
+		db.deleteMenuItem(id);
+	}
 }

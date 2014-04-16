@@ -6,7 +6,7 @@ import android.content.Context;
 
 import com.jnunes.basics.Customer;
 
-public class CustomerDAO {
+public class CustomerDAO{
 	private Database db;
 	
 	public CustomerDAO(Context context){
@@ -23,5 +23,9 @@ public class CustomerDAO {
 	
 	public Customer getCustomer(int id){
 		return db.getCustomer(id);
+	}
+	
+	public void deleteCustomer(int id){
+		db.deleteCustomer(id);
 	}
 }
