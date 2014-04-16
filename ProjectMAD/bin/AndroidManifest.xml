@@ -34,6 +34,22 @@
             android:name="com.jnunes.projectmad.NewReservationActivity"
             android:label="@string/title_activity_new_reservation" >
         </activity>
+        <activity
+            android:name="com.jnunes.projectmad.CustomerActivity"
+            android:label="@string/title_activity_customer" >
+        </activity>
+        <activity
+            android:name="com.jnunes.projectmad.AddCustomerActivity"
+            android:label="@string/title_activity_add_customer" >
+        </activity>
+        <activity
+            android:name="com.jnunes.projectmad.AddCustomerActivity"
+            android:label="@string/title_activity_add_customer" >
+        </activity>
+        <activity
+            android:name="com.jnunes.projectmad.AddCustomerActivity"
+            android:label="@string/title_activity_add" >
+        </activity>
     </application>
 
 </manifest>

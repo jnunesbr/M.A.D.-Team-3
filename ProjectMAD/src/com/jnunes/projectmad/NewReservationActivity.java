@@ -8,7 +8,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,10 +15,15 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.jnunes.basics.Customer;
+import com.jnunes.basics.Date;
+import com.jnunes.basics.Reservation;
+import com.jnunes.database.CustomerDAO;
+import com.jnunes.database.ReservationDAO;
 
 public class NewReservationActivity extends Activity {
 
@@ -27,7 +31,7 @@ public class NewReservationActivity extends Activity {
 	private Date choosenDate;
 	private Customer choosenCustomer;
 	private int position;
-	
+
 	private DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
 
 		@Override
@@ -35,9 +39,9 @@ public class NewReservationActivity extends Activity {
 				int dayOfMonth) {
 			TextView txtDate = (TextView) findViewById(R.id.txtLblReservationDate);
 			txtDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-			choosenDate.setYear(year-1900);
+			choosenDate.setYear(year - 1900);
 			choosenDate.setMonth(monthOfYear);
-			choosenDate.setDay(dayOfMonth+1);
+			choosenDate.setDay(dayOfMonth + 1);
 		}
 	};
 
@@ -60,10 +64,11 @@ public class NewReservationActivity extends Activity {
 		choosenDate = new Date();
 		Spinner spinner = (Spinner) findViewById(R.id.spQntPeople);
 		ArrayList<Integer> numbers = new ArrayList<Integer>();
-		for(int i=0;i<40;i++){
-			numbers.add(i+1);
+		for (int i = 0; i < 40; i++) {
+			numbers.add(i + 1);
 		}
-		ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, numbers); 
+		ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,
+				android.R.layout.simple_spinner_item, numbers);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
 	}
@@ -94,13 +99,12 @@ public class NewReservationActivity extends Activity {
 	}
 
 	public void confirmReservation(View view) {
-		Database database = Database.getInstance();
-		choosenCustomer = database.getCustomers().get(position);
-		ArrayList<String> items = new ArrayList<String>();
-		items.add("item 45");
+		ReservationDAO dao = new ReservationDAO(this);
+		CustomerDAO customerDao = new CustomerDAO(this);
+		choosenCustomer = customerDao.getAllCustomers().get(position);
 		Spinner spinner = (Spinner) findViewById(R.id.spQntPeople);
-		database.addReservation(new Reservation(choosenCustomer,items,choosenDate,spinner.getSelectedItemPosition()+1));
-		ListView listview = (ListView) findViewById(R.id.listview);
+		dao.addReservation(new Reservation(choosenCustomer, choosenDate,
+				spinner.getSelectedItemPosition() + 1));
 		setResult(RESULT_OK);
 		finish();
 	}
@@ -139,10 +143,10 @@ public class NewReservationActivity extends Activity {
 	}
 
 	private String[] getNamesList() {
-		Database database = Database.getInstance();
-		String[] names = new String[database.getCustomers().size()];
+		CustomerDAO dao = new CustomerDAO(this);
+		String[] names = new String[dao.getAllCustomers().size()];
 		int i = 0;
-		for (Customer customer : database.getCustomers()) {
+		for (Customer customer : dao.getAllCustomers()) {
 			names[i] = customer.getName() + " - " + customer.getPhone();
 			i++;
 		}

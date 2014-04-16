@@ -3,6 +3,8 @@ package com.jnunes.projectmad;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.jnunes.basics.Reservation;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

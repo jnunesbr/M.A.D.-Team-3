@@ -2,6 +2,8 @@ package com.jnunes.projectmad;
 
 import java.util.HashMap;
 
+import com.jnunes.basics.Customer;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -17,11 +19,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 public class MainActivity extends Activity {
 
 	private MainActivity context;
 	private Dialog popup;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,39 +43,48 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Search s = new Search();
 				EditText et = (EditText) popup.findViewById(R.id.etPhone);
-				s.execute(context,et.getText().toString());
+				s.execute(context, et.getText().toString());
 			}
 		});
 		popup.show();
 	}
-	
-	public void showReservation(View view){
-		Intent intent = new Intent(this,ReservationActivity.class);
+
+	public void showReservation(View view) {
+		Intent intent = new Intent(this, ReservationActivity.class);
+		startActivity(intent);
+	}
+
+	public void showCustomers(View view) {
+		Intent intent = new Intent(this, CustomerActivity.class);
 		startActivity(intent);
 	}
 
 	public void doStuff(Customer customer) {
 		if (customer != null) {
 			Toast.makeText(this, customer.getName(), Toast.LENGTH_LONG).show();
-		}else{
+		} else {
 			AlertDialog.Builder dlgQuestion = new AlertDialog.Builder(context);
-			dlgQuestion.setMessage("Customer not found. Would you like to register a new one?");
+			dlgQuestion
+					.setMessage("Customer not found. Would you like to register a new one?");
 			dlgQuestion.setNegativeButton("No", new OnClickListener() {
-				
+
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-										
+
 				}
 			});
-			
+
 			dlgQuestion.setPositiveButton("Yes", new OnClickListener() {
-				
+
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					AddActivity addCustomer =  new AddActivity(context);
-					EditText txtPhone = (EditText) popup.findViewById(R.id.etPhone);
-					addCustomer.setTitle("Add New Customer");
-					addCustomer.showScreen(txtPhone.getText().toString());
+					Intent intent = new Intent(context,
+							AddCustomerActivity.class);
+					EditText txtPhone = (EditText) popup
+							.findViewById(R.id.etPhone);
+					intent.putExtra("phone", txtPhone.getText().toString());
+					startActivity(intent);
+
 				}
 			});
 			dlgQuestion.show();
@@ -104,13 +115,13 @@ public class MainActivity extends Activity {
 		}
 
 		private void populate() {
-			list.put("1234567890", new Customer("1234567890", "Joao"));
-			list.put("1234567891", new Customer("1234567891", "Maria"));
-			list.put("1234567892", new Customer("1234567892", "Hanna"));
-			list.put("1234567893", new Customer("1234567893", "Anne"));
-			list.put("1234567894", new Customer("1234567894", "Paul"));
-			list.put("1234567895", new Customer("1234567895", "Leo"));
-			list.put("1234567896", new Customer("1234567896", "Peter"));
+			list.put("1234567890", new Customer("1234567890", "Joao", ""));
+			list.put("1234567891", new Customer("1234567891", "Maria", ""));
+			list.put("1234567892", new Customer("1234567892", "Hanna", ""));
+			list.put("1234567893", new Customer("1234567893", "Anne", ""));
+			list.put("1234567894", new Customer("1234567894", "Paul", ""));
+			list.put("1234567895", new Customer("1234567895", "Leo", ""));
+			list.put("1234567896", new Customer("1234567896", "Peter", ""));
 		}
 
 		@Override

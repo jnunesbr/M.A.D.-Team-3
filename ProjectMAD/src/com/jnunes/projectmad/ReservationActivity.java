@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.jnunes.basics.Reservation;
+import com.jnunes.database.ReservationDAO;
+
 public class ReservationActivity extends Activity {
 
 	private ListView listview;
@@ -26,10 +29,10 @@ public class ReservationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_reservation);
 		context = this;
-		Database database = Database.getInstance();;
+		ReservationDAO dao = new ReservationDAO(this);
 		EditText etSearch = (EditText) findViewById(R.id.etSearch);
 		etSearch.clearFocus();
-		final ArrayList<Reservation> reservations = database.getReservations();
+		final ArrayList<Reservation> reservations = dao.getAllReservations();
 		listview = (ListView) findViewById(R.id.listview);
 		adapter = new ReservationAdapter(this, reservations);
 		listview.setAdapter(adapter);
