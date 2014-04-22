@@ -13,19 +13,23 @@ public class CustomerDAO{
 		db = Database.getInstance(context);
 	}
 	
-	public void addCustomer(Customer customer){
-		db.addCustomer(customer);
+	public long addCustomer(Customer customer){
+		return db.addCustomer(customer);
 	}
 	
 	public ArrayList<Customer> getAllCustomers(){
 		return db.getAllCustomers();
 	}
 	
-	public Customer getCustomer(int id){
+	public Customer getCustomer(long id){
 		return db.getCustomer(id);
 	}
 	
-	public void deleteCustomer(int id){
+	public void deleteCustomer(long id){
 		db.deleteCustomer(id);
+	}
+	
+	public void editCustomer(Customer customer){
+		db.editCustomer(customer);
 	}
 }

@@ -5,21 +5,77 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/layName"
-        android:layout_width="match_parent"
+        android:id="@+id/layReservationInformationCustomer"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/txtLblName"
+            android:id="@+id/txtReservationInformationCustomerLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Client:" />
+            android:text="Customer`s Name: " />
+        
+        <TextView
+            android:id="@+id/txtReservationInformationCustomer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/layReservationInformationDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/txtName"
+            android:id="@+id/txtReservationInformationDateLbl"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Date: " />
+        
+        <TextView
+            android:id="@+id/txtReservationInformationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layReservationInformationPeople"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+		
+        <TextView
+            android:id="@+id/txtReservationInformationPeopleLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of People: " />
+        
+        <TextView
+            android:id="@+id/txtReservationInformationPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number" />
+    </LinearLayout>
+	
+    <LinearLayout
+        android:id="@+id/layReservationInformationButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
+        <Button
+            android:id="@+id/btnReservationInformationDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete" />
+        
+        <Button
+            android:id="@+id/btnReservationInformationEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit" />
+    </LinearLayout>
 </LinearLayout>

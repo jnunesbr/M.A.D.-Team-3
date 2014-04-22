@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.jnunes.basics.Customer;
 
 public class CustomerAdapter extends BaseAdapter {
+	
 	private Context context;
 	private List<Customer> data;
 	private static LayoutInflater inflater = null;
@@ -24,16 +25,17 @@ public class CustomerAdapter extends BaseAdapter {
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
+
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return data.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return null;
+		return data.get(position);
 	}
 
 	@Override
@@ -47,11 +49,11 @@ public class CustomerAdapter extends BaseAdapter {
 		View vi = convertView;
 		if (vi == null)
 			vi = inflater.inflate(R.layout.customer_row, null);
-		Log.d("Test","Position: "+position);
 		Customer customer = data.get(position);
-		
-		Log.d("Test","Name: "+customer.getName());
-		Log.d("Test","Phone: "+customer.getPhone());
+
+		TextView txtId = (TextView) vi.findViewById(R.id.txtCustomerIdRow);
+		txtId.setText("" + customer.getId());
+
 		TextView txtName = (TextView) vi.findViewById(R.id.txtCustomerName);
 		txtName.setText(customer.getName());
 

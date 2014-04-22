@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.jnunes.basics.Customer;
 import com.jnunes.basics.Date;
@@ -66,6 +67,10 @@ public class Database extends SQLiteOpenHelper {
 		return database;
 	}
 
+	public void dropDatabase() {
+		onUpgrade(this.getWritableDatabase(), 1, 2);
+	}
+
 	// Creating Tables
 	@Override
 	public void onCreate(SQLiteDatabase db) {
@@ -94,7 +99,7 @@ public class Database extends SQLiteOpenHelper {
 				+ TABLE_PICKUPS_ITEMS + "(" + KEY_PICKUP_ITEM_ID
 				+ " INTEGER PRIMARY KEY," + KEY_PICKUP + " INTEGER," + KEY_ITEM
 				+ " INTEGER," + "FOREIGN KEY(" + KEY_PICKUP + ") REFERENCES "
-				+ TABLE_PICKUPS + "(" + KEY_PICKUP_ID + "))" + "FOREIGN KEY("
+				+ TABLE_PICKUPS + "(" + KEY_PICKUP_ID + ")," + "FOREIGN KEY("
 				+ KEY_ITEM + ") REFERENCES " + TABLE_MENU_ITEMS + "("
 				+ KEY_ITEM_ID + "))";
 
@@ -122,7 +127,7 @@ public class Database extends SQLiteOpenHelper {
 	// Customers Methods
 	// ----------------------------------------------------------------------------------------------
 
-	public void addCustomer(Customer customer) {
+	public long addCustomer(Customer customer) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
@@ -131,42 +136,56 @@ public class Database extends SQLiteOpenHelper {
 		values.put(KEY_ADDRESS, customer.getAddress());
 
 		// Inserting Row
-		db.insert(TABLE_CUSTOMERS, null, values);
+		long id = db.insert(TABLE_CUSTOMERS, null, values);
 		db.close(); // Closing database connection
+		return id;
 	}
 
-	public Customer getCustomer(int id) {
+	public Customer getCustomer(long id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(TABLE_CUSTOMERS, new String[] {
 				KEY_CUSTOMER_ID, KEY_NAME, KEY_PH_NO, KEY_ADDRESS },
 				KEY_CUSTOMER_ID + "=?", new String[] { String.valueOf(id) },
 				null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
 
-		Customer contact = new Customer(cursor.getString(2),
-				cursor.getString(1), cursor.getString(3));
+		Customer contact = null;
+		if (cursor.moveToFirst()) {
+			contact = new Customer(Integer.parseInt(cursor.getString(0)),
+					cursor.getString(2), cursor.getString(1),
+					cursor.getString(3));
+		}
 		db.close();
 		return contact;
 	}
 
-	public void deleteCustomer(int id){
+	public void deleteCustomer(long id) {
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_CUSTOMERS, KEY_CUSTOMER_ID+"="+id, null);
+		db.delete(TABLE_CUSTOMERS, KEY_CUSTOMER_ID + "=" + id, null);
 		db.close();
 	}
-	
+
+	public void editCustomer(Customer customer) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(KEY_NAME, customer.getName());
+		values.put(KEY_PH_NO, customer.getPhone());
+		values.put(KEY_ADDRESS, customer.getAddress());
+		db.update(TABLE_CUSTOMERS, values,
+				KEY_CUSTOMER_ID + "=" + customer.getId(), null);
+		db.close();
+	}
+
 	public ArrayList<Customer> getAllCustomers() {
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		String query = "SELECT * FROM " + TABLE_CUSTOMERS;
+		String query = "SELECT " + KEY_CUSTOMER_ID + " FROM " + TABLE_CUSTOMERS;
 		Cursor cursor = db.rawQuery(query, null);
 
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		while (cursor.moveToNext()) {
-			Customer customer = new Customer(cursor.getString(2),
-					cursor.getString(1), cursor.getString(3));
+			Customer customer = getCustomer(Integer.parseInt(cursor
+					.getString(0)));
 			customers.add(customer);
 		}
 		db.close();
@@ -175,7 +194,7 @@ public class Database extends SQLiteOpenHelper {
 
 	// Reservation Methods
 	// ------------------------------------------------------------------------
-	public void addReservation(Reservation reservation) {
+	public long addReservation(Reservation reservation) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
@@ -185,11 +204,12 @@ public class Database extends SQLiteOpenHelper {
 				.getDateTimeString());
 
 		// Inserting Row
-		db.insert(TABLE_RESERVATIONS, null, values);
+		long id = db.insert(TABLE_RESERVATIONS, null, values);
 		db.close(); // Closing database connection
+		return id;
 	}
 
-	public Reservation getReservation(int id) {
+	public Reservation getReservation(long id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(TABLE_RESERVATIONS,
@@ -200,15 +220,26 @@ public class Database extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		Customer customer = getCustomer(Integer.parseInt(cursor.getString(0)));
-		Reservation reservation = new Reservation(customer, new Date(
+		Reservation reservation = new Reservation(id, customer, new Date(
 				cursor.getString(1)), Integer.parseInt(cursor.getString(2)));
 		db.close();
 		return reservation;
 	}
-	
-	public void deleteReservation(int id){
+
+	public void deleteReservation(long id) {
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_RESERVATIONS, KEY_RESERVATION_ID+"="+id, null);
+		db.delete(TABLE_RESERVATIONS, KEY_RESERVATION_ID + "=" + id, null);
+		db.close();
+	}
+
+	public void editReservation(Reservation reservation) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(KEY_CUSTOMER_RESERVATION, reservation.getCustomer().getId());
+		values.put(KEY_DATE_TIME, reservation.getReservationDate().getDateTimeString());
+		values.put(KEY_NUMBER_OF_PEOPLE, reservation.getNumberPeople());
+		db.update(TABLE_RESERVATIONS, values,
+				KEY_RESERVATION_ID + "=" + reservation.getId(), null);
 		db.close();
 	}
 
@@ -220,10 +251,13 @@ public class Database extends SQLiteOpenHelper {
 		Cursor cursor = db.rawQuery(query, null);
 
 		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
-		while (cursor.moveToNext()) {
-			Reservation reservation = getReservation(Integer.parseInt(cursor
-					.getString(0)));
-			reservations.add(reservation);
+		if (cursor.getCount() != 0) {
+			while (cursor.moveToNext()) {
+				Reservation reservation = getReservation(Integer
+						.parseInt(cursor.getString(0)));
+
+				reservations.add(reservation);
+			}
 		}
 		db.close();
 		return reservations;
@@ -257,13 +291,13 @@ public class Database extends SQLiteOpenHelper {
 		db.close();
 		return menuItem;
 	}
-	
-	public void deleteMenuItem(int id){
+
+	public void deleteMenuItem(int id) {
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_MENU_ITEMS, KEY_ITEM_ID+"="+id, null);
+		db.delete(TABLE_MENU_ITEMS, KEY_ITEM_ID + "=" + id, null);
 		db.close();
 	}
-	
+
 	public ArrayList<MenuItem> getAllMenuItems() {
 		SQLiteDatabase db = this.getReadableDatabase();
 
@@ -315,10 +349,10 @@ public class Database extends SQLiteOpenHelper {
 		db.close();
 		return pickup;
 	}
-	
-	public void deletePickup(int id){
+
+	public void deletePickup(int id) {
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_PICKUPS, KEY_PICKUP_ID+"="+id, null);
+		db.delete(TABLE_PICKUPS, KEY_PICKUP_ID + "=" + id, null);
 		db.close();
 	}
 

@@ -13,19 +13,23 @@ public class ReservationDAO {
 		db = Database.getInstance(context);
 	}
 
-	public void addReservation(Reservation reservation) {
-		db.addReservation(reservation);
+	public long addReservation(Reservation reservation) {
+		return db.addReservation(reservation);
 	}
 
 	public ArrayList<Reservation> getAllReservations() {
 		return db.getAllReservations();
 	}
 
-	public Reservation getReservation(int id) {
+	public Reservation getReservation(long id) {
 		return db.getReservation(id);
 	}
 	
-	public void deleteReservation(int id){
+	public void deleteReservation(long id){
 		db.deleteReservation(id);
+	}
+	
+	public void editReservation(Reservation reservation){
+		db.editReservation(reservation);
 	}
 }

@@ -1,9 +1,6 @@
 package com.jnunes.projectmad;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import com.jnunes.basics.Reservation;
+import java.util.List;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,13 +9,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.jnunes.basics.Reservation;
+
 class ReservationAdapter extends BaseAdapter {
 
 	private Context context;
-	private ArrayList<Reservation> data;
+	private List<Reservation> data;
 	private static LayoutInflater inflater = null;
 
-	public ReservationAdapter(Context context, ArrayList<Reservation> data) {
+	public ReservationAdapter(Context context, List<Reservation> data) {
 		// TODO Auto-generated constructor stub
 		this.context = context;
 		this.data = data;
@@ -41,16 +40,18 @@ class ReservationAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
-		return position;
+		return 0;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
 		View vi = convertView;
 		if (vi == null)
 			vi = inflater.inflate(R.layout.reservation_row, null);
 		Reservation reservation = data.get(position);
+
+		TextView txtId = (TextView) vi.findViewById(R.id.txtReservationIdRow);
+		txtId.setText(Long.toString(reservation.getId()));
 
 		TextView txtName = (TextView) vi.findViewById(R.id.txtCustomer);
 		txtName.setText(reservation.getCustomer().getName());
@@ -60,12 +61,13 @@ class ReservationAdapter extends BaseAdapter {
 
 		TextView txtPhone = (TextView) vi.findViewById(R.id.txtPhone);
 		txtPhone.setText(reservation.getCustomer().getPhone());
-		
+
 		TextView txtHour = (TextView) vi.findViewById(R.id.txtHour);
 		txtHour.setText(reservation.getReservationDate().getHourString());
-		
+
 		TextView txtPeople = (TextView) vi.findViewById(R.id.txtQntPeople);
-		txtPeople.setText(""+reservation.getNumberPeople());
+		txtPeople.setText("" + reservation.getNumberPeople());
+		
 		return vi;
 	}
 }

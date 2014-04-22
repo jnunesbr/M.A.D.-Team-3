@@ -17,7 +17,7 @@
             android:text="Name" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/txtAddName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
@@ -37,7 +37,7 @@
             android:text="Phone" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/txtAddPhone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
@@ -57,7 +57,7 @@
             android:text="Address" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/txtAddAddress"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
