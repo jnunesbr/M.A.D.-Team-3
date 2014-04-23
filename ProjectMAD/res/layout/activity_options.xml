@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#000000"
+        
+    tools:ignore="ButtonStyle" >
+
+     <Button
+         android:id="@+id/customers"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp"
+         android:layout_marginTop="30dp"
+         android:background="#056da1"
+         android:onClick="customer"
+         android:text="Customers"
+         android:textColor="#ffffff"
+         android:textSize="21sp" />
+
+	<Button
+	    android:id="@+id/menus"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="10dp"
+	    android:layout_marginRight="10dp"
+	    android:layout_marginTop="30dp"
+	    android:background="#056da1"
+	    android:onClick="menu"
+	    android:text="Menus"
+	    android:textColor="#ffffff"
+	    android:textSize="21sp" />
+	
+	    <Button
+	        android:id="@+id/pickups"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginRight="10dp"
+	        android:layout_marginTop="30dp"
+	        android:background="#056da1"
+	        android:onClick="pickup"
+	        android:text="Pick Ups"
+	        android:textColor="#ffffff"
+	        android:textSize="21sp" />
+
+	<Button
+	    android:id="@+id/reservations"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="10dp"
+	    android:layout_marginRight="10dp"
+	    android:layout_marginTop="30dp"
+	    android:background="#056da1"
+	    android:onClick="reservation"
+	    android:text="Reservations"
+	    android:textColor="#ffffff"
+	    android:textSize="21sp" />
+	
+	<Button
+	    android:id="@+id/finish"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="90dp"
+	    android:layout_marginRight="90dp"
+	    android:layout_marginTop="60dp"
+	    android:background="#056da1"
+	    android:onClick="onClick"
+	    android:text="Close App"
+	    android:textColor="#ffffff"
+	    android:textSize="14sp" />
+	
+</LinearLayout>
+	
+

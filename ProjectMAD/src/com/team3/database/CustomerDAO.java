@@ -1,10 +1,10 @@
-package com.jnunes.database;
+package com.team3.database;
 
 import java.util.ArrayList;
 
 import android.content.Context;
 
-import com.jnunes.basics.Customer;
+import com.team3.basics.Customer;
 
 public class CustomerDAO{
 	private Database db;

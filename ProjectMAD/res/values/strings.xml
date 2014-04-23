@@ -9,6 +9,34 @@
     <string name="title_activity_new_reservation">NewReservationActivity</string>
     <string name="title_activity_customer">CustomerActivity</string>
     <string name="title_activity_add_customer">AddActivity</string>
+    <string name="title_activity_view_menu_items">ViewMenuItems</string>
+    <string name="title_activity_add_food_item">AddFoodItem</string>
     <string name="title_activity_add">AddActivity</string>
+    <string name="title_activity_Addpickups">Add Pickups</string>
+    <string name="title_activity_ViewPickup">ViewPickup</string>
+
+    <string-array name="ItemType_array">
+        <item>Select Item Type...</item>
+        <item>Breakfast</item>
+        <item>Beverage</item>
+        <item>Meal</item>
+        <item>Appetizer</item>
+        <item>Dessert</item>
+    </string-array>
+    <string-array name="ItemName"></string-array>
+    <string-array name="Cost_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string name="title_activity_update_menu_item">UpdateMenuITem</string>
 
 </resources>

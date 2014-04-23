@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+	android:id="@+id/widget0"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:theme="@style/Theme.AppCompat"
+	android:background="@drawable/bg">
+<ListView
+	android:id="@+id/FoodMenuView"
+	android:layout_width="278dp"
+	android:layout_height="275dp"
+	android:layout_x="18dp"
+	android:layout_y="74dp" />
+<TextView
+	android:id="@+id/textView1"
+	android:layout_width="277dp"
+	android:layout_height="42dp"
+	android:text="Menu Management Screen"
+	android:textSize="20sp"
+	android:textColor="@color/black"
+	android:gravity="center"
+	android:layout_x="21dp"
+	android:layout_y="13dp" />
+<Button
+	android:id="@+id/button1"
+	android:layout_width="119dp"
+	android:layout_height="wrap_content"
+	android:text="Add New"
+	android:onClick="additem"
+	android:layout_x="18dp"
+	android:layout_y="362dp" />
+<Button
+	android:id="@+id/widget49"
+	android:layout_width="125dp"
+	android:layout_height="wrap_content"
+	android:text="Button"
+	android:gravity="center"
+	android:onClick="back"
+	android:layout_x="164dp"
+	android:layout_y="362dp" />
+</AbsoluteLayout>

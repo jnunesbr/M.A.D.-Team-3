@@ -1,4 +1,4 @@
-package com.jnunes.database;
+package com.team3.database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,11 +10,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.jnunes.basics.Customer;
-import com.jnunes.basics.Date;
-import com.jnunes.basics.MenuItem;
-import com.jnunes.basics.Pickup;
-import com.jnunes.basics.Reservation;
+import com.team3.basics.Customer;
+import com.team3.basics.Date;
+import com.team3.basics.MenuItem;
+import com.team3.basics.Pickup;
+import com.team3.basics.Reservation;
 
 public class Database extends SQLiteOpenHelper {
 	private static Database database;
@@ -46,9 +46,10 @@ public class Database extends SQLiteOpenHelper {
 	private static final String KEY_DATE_TIME_PICKUP = "datetime";
 
 	// Menu_Items Table Columns names
-	private static final String KEY_ITEM_ID = "id";
-	private static final String KEY_ITEM_NAME = "name";
-	private static final String KEY_ITEM_PRICE = "price";
+    private static final String KEY_ITEM_ID = "id";
+    private static final String KEY_ITEM_NAME = "itemname";
+    private static final String KEY_ITEM_TYPE = "itemtype";
+    private static final String KEY_ITEM_PRICE = "itemprice";
 
 	// PickUps_Items Table Columns names
 	private static final String KEY_PICKUP_ITEM_ID = "id";
@@ -92,16 +93,16 @@ public class Database extends SQLiteOpenHelper {
 				+ TABLE_CUSTOMERS + "(" + KEY_CUSTOMER_ID + "))";
 
 		String CREATE_MENU_ITEMS_TABLE = "CREATE TABLE " + TABLE_MENU_ITEMS
-				+ "(" + KEY_ITEM_ID + " INTEGER PRIMARY KEY," + KEY_ITEM_NAME
-				+ " TEXT," + KEY_ITEM_PRICE + " REAL" + ")";
-
-		String CREATE_PICKUPS_ITEMS_TABLE = "CREATE TABLE "
-				+ TABLE_PICKUPS_ITEMS + "(" + KEY_PICKUP_ITEM_ID
-				+ " INTEGER PRIMARY KEY," + KEY_PICKUP + " INTEGER," + KEY_ITEM
-				+ " INTEGER," + "FOREIGN KEY(" + KEY_PICKUP + ") REFERENCES "
-				+ TABLE_PICKUPS + "(" + KEY_PICKUP_ID + ")," + "FOREIGN KEY("
-				+ KEY_ITEM + ") REFERENCES " + TABLE_MENU_ITEMS + "("
-				+ KEY_ITEM_ID + "))";
+                + "(" + KEY_ITEM_ID + " INTEGER PRIMARY KEY," + KEY_ITEM_NAME
+                + " TEXT," + KEY_ITEM_TYPE + " TEXT," + KEY_ITEM_PRICE + " REAL" + ")";
+ 
+        String CREATE_PICKUPS_ITEMS_TABLE = "CREATE TABLE "
+                + TABLE_PICKUPS_ITEMS + "(" + KEY_PICKUP_ITEM_ID
+                + " INTEGER PRIMARY KEY," + KEY_PICKUP + " INTEGER," + KEY_ITEM
+                + " INTEGER," + "FOREIGN KEY(" + KEY_PICKUP + ") REFERENCES "
+                + TABLE_PICKUPS + "(" + KEY_PICKUP_ID + "))" + "FOREIGN KEY("
+                + KEY_ITEM + ") REFERENCES " + TABLE_MENU_ITEMS + "("
+                + KEY_ITEM_ID + "))";
 
 		db.execSQL(CREATE_CUSTOMERS_TABLE);
 		db.execSQL(CREATE_RESERVATIONS_TABLE);
@@ -266,53 +267,76 @@ public class Database extends SQLiteOpenHelper {
 	// Menu Items Methods
 	// ------------------------------------------------------------------------
 	public void addMenuItem(MenuItem menuItem) {
-		SQLiteDatabase db = this.getWritableDatabase();
-
-		ContentValues values = new ContentValues();
-		values.put(KEY_ITEM_NAME, menuItem.getName());
-		values.put(KEY_ITEM_PRICE, menuItem.getPrice());
-
-		// Inserting Row
-		db.insert(TABLE_MENU_ITEMS, null, values);
-		db.close();
-	}
-
-	public MenuItem getMenuItem(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_MENU_ITEMS, new String[] {
-				KEY_ITEM_NAME, KEY_ITEM_PRICE }, KEY_ITEM_ID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
-		if (cursor != null)
-			cursor.moveToFirst();
-
-		MenuItem menuItem = new MenuItem(cursor.getString(0),
-				Double.parseDouble(cursor.getString(1)));
-		db.close();
-		return menuItem;
-	}
-
-	public void deleteMenuItem(int id) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_MENU_ITEMS, KEY_ITEM_ID + "=" + id, null);
-		db.close();
-	}
-
-	public ArrayList<MenuItem> getAllMenuItems() {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		String query = "SELECT * FROM " + TABLE_MENU_ITEMS;
-		Cursor cursor = db.rawQuery(query, null);
-
-		ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
-		while (cursor.moveToNext()) {
-			MenuItem menuItem = new MenuItem(cursor.getString(1),
-					Double.parseDouble(cursor.getString(2)));
-			menuItems.add(menuItem);
-		}
-		db.close();
-		return menuItems;
-	}
+        SQLiteDatabase db = this.getWritableDatabase();
+ 
+        ContentValues values = new ContentValues();
+        values.put(KEY_ITEM_NAME, menuItem.getName());
+        values.put(KEY_ITEM_TYPE, menuItem.getItemtype());
+        values.put(KEY_ITEM_PRICE, menuItem.getItemscost());
+ 
+        // Inserting Row
+        db.insert(TABLE_MENU_ITEMS, null, values);
+        db.close();
+    }
+    
+    public void UpdateMenuItem(MenuItem menuItem) {
+        
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_ITEM_NAME, menuItem.getName());
+        values.put(KEY_ITEM_TYPE, menuItem.getItemtype());
+        values.put(KEY_ITEM_PRICE, menuItem.getItemscost());
+        String name= menuItem.getName().toString();
+        // Inserting Row */
+        //db.update(TABLE_MENU_ITEMS,values,KEY_ITEM_NAME+ "=?" + name ,null);
+        db.update(TABLE_MENU_ITEMS, values, "itemname" + "='" + name+"'", null);
+        //db.insert(TABLE_MENU_ITEMS, null, values);
+        db.close();
+    }
+ 
+    public MenuItem getMenuItem(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+ 
+        Cursor cursor = db.query(TABLE_MENU_ITEMS, new String[] {
+                KEY_ITEM_NAME, KEY_ITEM_TYPE, KEY_ITEM_PRICE }, KEY_ITEM_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+ 
+        MenuItem menuItem = new MenuItem(cursor.getString(0), cursor.getString(1),Double.parseDouble(cursor.getString(2)));
+ 
+        db.close();
+        return menuItem;
+    }
+    
+    public void deleteMenuItem(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_MENU_ITEMS, KEY_ITEM_ID+"="+id, null);
+        db.close();
+    }
+    
+    public void deleteMenuItem(String  MenuName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = KEY_ITEM_NAME + " = '" + MenuName+"'";
+        db.delete(TABLE_MENU_ITEMS, whereclause, null);
+        db.close();
+    }
+    
+    public ArrayList<MenuItem> getAllMenuItems() {
+        SQLiteDatabase db = this.getReadableDatabase();
+ 
+        String query = "SELECT * FROM " + TABLE_MENU_ITEMS;
+        Cursor cursor = db.rawQuery(query, null);
+ 
+        ArrayList<MenuItem> menuItems = new ArrayList<MenuItem>();
+        while (cursor.moveToNext()) {
+            MenuItem menuItem = new MenuItem(cursor.getString(1), cursor.getString(2),
+                    Double.parseDouble(cursor.getString(3)));
+            menuItems.add(menuItem);
+        }
+        db.close();
+        return menuItems;
+    }
 
 	// PickUps Methods
 	// ------------------------------------------------------------------------

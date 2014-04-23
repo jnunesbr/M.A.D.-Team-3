@@ -1,4 +1,4 @@
-package com.jnunes.projectmad;
+package com.team3.projectmad;
 
 import java.util.List;
 
@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.jnunes.basics.Customer;
+import com.team3.basics.Customer;
+import com.team3r.projectmad.R;
 
 public class CustomerAdapter extends BaseAdapter {
 	

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+	android:id="@+id/widget0"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:theme="@style/Theme.AppCompat"
+    android:background="@drawable/bg">
+<RelativeLayout
+	android:id="@+id/widget37"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_x="0dp"
+	android:layout_y="48dp">
+</RelativeLayout>
+<Button
+	android:id="@+id/widget38"
+	android:layout_width="129dp"
+	android:layout_height="wrap_content"
+	android:text="Make New"
+	android:layout_x="15dp"
+	android:layout_y="368dp" />
+<Button
+	android:id="@+id/widget39"
+	android:layout_width="124dp"
+	android:layout_height="wrap_content"
+	android:text="GoBack"
+	android:layout_x="183dp"
+	android:layout_y="371dp" />
+<ListView
+	android:id="@+id/widget40"
+	android:layout_width="279dp"
+	android:layout_height="265dp"
+	android:layout_x="18dp"
+	android:layout_y="85dp" />
+<TextView
+	android:id="@+id/widget41"
+	android:layout_width="276dp"
+	android:layout_height="wrap_content"
+	android:text="View Pickup List"
+	android:textSize="20sp"
+	android:gravity="center"
+	android:layout_x="20dp"
+	android:layout_y="15dp" />
+</AbsoluteLayout>

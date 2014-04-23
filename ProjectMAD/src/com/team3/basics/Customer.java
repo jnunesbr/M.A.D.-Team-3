@@ -1,4 +1,4 @@
-package com.jnunes.basics;
+package com.team3.basics;
 
 public class Customer {
 	private String name, phone, address;

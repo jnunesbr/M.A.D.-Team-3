@@ -1,4 +1,4 @@
-package com.jnunes.projectmad;
+package com.team3.projectmad;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,11 +21,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.jnunes.basics.Customer;
-import com.jnunes.basics.Date;
-import com.jnunes.basics.Reservation;
-import com.jnunes.database.CustomerDAO;
-import com.jnunes.database.ReservationDAO;
+import com.team3.basics.Customer;
+import com.team3.basics.Date;
+import com.team3.basics.Reservation;
+import com.team3.database.CustomerDAO;
+import com.team3.database.ReservationDAO;
+import com.team3r.projectmad.R;
 
 public class AddReservationActivity extends Activity implements
 		OnItemClickListener {

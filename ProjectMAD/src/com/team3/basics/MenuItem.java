@@ -1,31 +1,41 @@
-package com.jnunes.basics;
+package com.team3.basics;
 
 public class MenuItem {
-	private String name;
-	private double price;
-
-	public MenuItem() {
-
+	public String itemname,itemtype;
+	public double itemprice;
+	/**
+	 * @param itemname
+	 * @param itemtype
+	 * @param itemscost
+	 * @param itemmcost
+	 * @param itemlcost
+	 */
+	public MenuItem(String itemname, String itemtype, double itemprice) {
+		super();
+		this.itemname = itemname;
+		this.itemtype = itemtype;
+		this.itemprice = itemprice;
+	
 	}
-
-	public MenuItem(String name, double price) {
-		this.name = name;
-		this.price = price;
-	}
-
 	public String getName() {
-		return name;
+		return itemname;
 	}
+	public void setItemname(String itemname) {
+		this.itemname = itemname;
+	}
+	public String getItemtype() {
+		return itemtype;
+	}
+	public void setItemtype(String itemtype) {
+		this.itemtype = itemtype;
+	}
+	public double getItemscost() {
+		return itemprice;
+	}
+	public void setItemscost(double itemscost) {
+		this.itemprice = itemprice;
+	}
+	
+	
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
 }

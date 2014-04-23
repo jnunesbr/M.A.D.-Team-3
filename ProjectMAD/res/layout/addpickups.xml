@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+	android:id="@+id/widget0"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:theme="@style/Theme.AppCompat"
+    android:background="@drawable/bg">
+<TextView
+	android:id="@+id/widget32"
+	android:layout_width="275dp"
+	android:layout_height="30dp"
+	android:text="Add New PIckups"
+	android:textSize="20sp"
+	android:textStyle="bold"
+	android:textColor="@color/darkgray"
+	android:gravity="center"
+	android:layout_x="23dp"
+	android:layout_y="28dp" />
+<TextView
+	android:id="@+id/widget33"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:text="Customer Name:"
+	android:textSize="15sp"
+	android:layout_x="17dp"
+	android:layout_y="82dp" />
+<Spinner
+	android:id="@+id/customername"
+	android:layout_width="150dp"
+	android:layout_height="wrap_content"
+	android:layout_x="145dp"
+	android:layout_y="64dp" />
+<ListView
+	android:id="@+id/widget35"
+	android:layout_width="265dp"
+	android:layout_height="151dp"
+	android:layout_x="28dp"
+	android:layout_y="156dp" />
+<Button
+	android:id="@+id/widget36"
+	android:layout_width="261dp"
+	android:layout_height="wrap_content"
+	android:text="Place Order"
+	android:layout_x="30dp"
+	android:layout_y="332dp"
+	android:onClick="placeorder"
+	 />
+</AbsoluteLayout>

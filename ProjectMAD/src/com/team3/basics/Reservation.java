@@ -1,4 +1,4 @@
-package com.jnunes.basics;
+package com.team3.basics;
 
 public class Reservation {
 	private long id;

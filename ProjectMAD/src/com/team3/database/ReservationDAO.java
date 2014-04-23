@@ -1,10 +1,10 @@
-package com.jnunes.database;
+package com.team3.database;
 
 import java.util.ArrayList;
 
 import android.content.Context;
 
-import com.jnunes.basics.Reservation;
+import com.team3.basics.Reservation;
 
 public class ReservationDAO {
 	private Database db;

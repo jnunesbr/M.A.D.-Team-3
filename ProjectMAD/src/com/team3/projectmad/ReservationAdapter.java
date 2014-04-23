@@ -1,4 +1,4 @@
-package com.jnunes.projectmad;
+package com.team3.projectmad;
 
 import java.util.List;
 
@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.jnunes.basics.Reservation;
+import com.team3.basics.Reservation;
+import com.team3r.projectmad.R;
 
 class ReservationAdapter extends BaseAdapter {
 

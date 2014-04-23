@@ -1,4 +1,4 @@
-package com.jnunes.projectmad;
+package com.team3.projectmad;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import com.jnunes.basics.Customer;
-import com.jnunes.database.CustomerDAO;
+import com.team3.basics.Customer;
+import com.team3.database.CustomerDAO;
+import com.team3r.projectmad.R;
 
 public class AddCustomerActivity extends Activity {
 

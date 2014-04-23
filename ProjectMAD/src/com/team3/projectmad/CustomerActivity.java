@@ -1,4 +1,4 @@
-package com.jnunes.projectmad;
+package com.team3.projectmad;
 
 import java.util.List;
 
@@ -19,8 +19,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.jnunes.basics.Customer;
-import com.jnunes.database.CustomerDAO;
+import com.team3.basics.Customer;
+import com.team3.database.CustomerDAO;
+import com.team3r.projectmad.R;
 
 public class CustomerActivity extends Activity implements OnItemClickListener,
 		OnClickListener {

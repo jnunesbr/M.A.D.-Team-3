@@ -1,4 +1,4 @@
-package com.jnunes.basics;
+package com.team3.basics;
 
 import java.util.ArrayList;
 import java.util.HashMap;

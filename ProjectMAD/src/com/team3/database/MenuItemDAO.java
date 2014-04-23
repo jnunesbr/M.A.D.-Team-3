@@ -1,10 +1,10 @@
-package com.jnunes.database;
+package com.team3.database;
 
 import java.util.ArrayList;
 
 import android.content.Context;
 
-import com.jnunes.basics.MenuItem;
+import com.team3.basics.MenuItem;
 
 public class MenuItemDAO {
 	private Database db;
@@ -28,4 +28,11 @@ public class MenuItemDAO {
 	public void deletMenuItem(int id){
 		db.deleteMenuItem(id);
 	}
+public void deletMenuItem(String Mname){
+        db.deleteMenuItem(Mname);
+    }
+    
+    public void UMenuItem(MenuItem newitem){
+        db.UpdateMenuItem(newitem);
+    }
 }

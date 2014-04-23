@@ -1,4 +1,4 @@
-package com.jnunes.projectmad;
+package com.team3.projectmad;
 
 import java.util.ArrayList;
 
@@ -18,8 +18,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.jnunes.basics.Reservation;
-import com.jnunes.database.ReservationDAO;
+import com.team3.basics.Reservation;
+import com.team3.database.ReservationDAO;
+import com.team3r.projectmad.R;
 
 public class ReservationActivity extends Activity implements
 		OnItemClickListener, android.view.View.OnClickListener {

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+	android:id="@+id/widget0"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:theme="@style/Theme.AppCompat"
+    android:background="@drawable/bg"
+	>
+<TextView
+	android:id="@+id/widget32"
+	android:layout_width="254dp"
+	android:layout_height="38dp"
+	android:text="Update Item Details"
+	android:textSize="25sp"
+	android:layout_x="27dp"
+	android:layout_y="17dp" />
+<TextView
+	android:id="@+id/widget33"
+	android:layout_width="109dp"
+	android:layout_height="wrap_content"
+	android:text="ItemName:"
+	android:textSize="20sp"
+	android:layout_x="26dp"
+	android:layout_y="90dp" />
+
+<TextView
+	android:id="@+id/widget34"
+	android:layout_width="93dp"
+	android:layout_height="wrap_content"
+	android:text="New ItemType"
+	android:textSize="20sp"
+	android:layout_x="29dp"
+	android:layout_y="146dp" />
+<TextView
+	android:id="@+id/widget35"
+	android:layout_width="141dp"
+	android:layout_height="39dp"
+	android:text="New Item Cost:"
+	android:textSize="20sp"
+	android:layout_x="29dp"
+	android:layout_y="228dp" />
+<Spinner
+	android:id="@+id/widget36"
+	android:layout_width="131dp"
+	android:layout_height="wrap_content"
+	android:layout_x="181dp"
+	android:layout_y="144dp" />
+<Spinner
+	android:id="@+id/widget37"
+	android:layout_width="131dp"
+	android:layout_height="wrap_content"
+	android:layout_x="181dp"
+	android:layout_y="218dp" />
+<Spinner
+	android:id="@+id/widget38"
+	android:layout_width="132dp"
+	android:layout_height="wrap_content"
+	android:layout_x="180dp"
+	android:layout_y="76dp" />
+<Button
+	android:id="@+id/widget39"
+	android:layout_width="274dp"
+	android:layout_height="wrap_content"
+	android:text="Update Item"
+	android:textSize="20sp"
+	android:textColor="@color/magenta"
+	android:layout_x="31dp"
+	android:layout_y="308dp" 
+	android:onClick="update"/>
+</AbsoluteLayout>
